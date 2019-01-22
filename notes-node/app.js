@@ -2,7 +2,15 @@ console.log("Starting app.");
 
 const fs = require('fs')
 const os = require('os')
+const notes = require('./notes.js')
+// access the notes.js file
 
+var res = notes.addNote()
+console.log(res);
+// accessing addNote function in notes.js
+ 
+console.log('Result:', notes.add(9,6));
+// accessing add function and exucuting in notes.js
 let user = os.userInfo()
 //console.log(user)
 
