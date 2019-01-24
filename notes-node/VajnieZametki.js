@@ -60,5 +60,47 @@ Lesson 12. Restarting App with Nodemon
 
 
 Lesson 13. Getting Input from User
+        //in terminal
+        node app.js list
 
-        
+        console.log(process.argv);
+        //on console
+        [ '/Users/otash/.nvm/versions/node/v10.11.0/bin/node',
+          '/Users/otash/Flatiron/Node/NODE.js/notes-node/app.js',
+          'list' ]
+
+        const command = process.argv[2]
+        console.log(command); // list
+
+Lesson 14. Simplified input with Yargs
+
+    //used to parsing the argument easyly which was entered in the terminal
+    const yargs = require('yargs')
+    //in the terminal
+    const argv = yargs.argv
+        // we can access title or body
+    argv.title
+    argv.body
+
+
+Lesson 15. Working with JSON
+
+
+        let obj = {
+            name:"Otabek",
+            age: 32
+        }
+        JSON.stringify(obj)
+        //converts it into string
+        // =>
+        '{"name":"Otabek","age":32}'
+
+        let string = '{"name":"Otabek","age":32}'
+
+        JSON.parse(string)
+        //converts it into object
+        //=>
+        {
+            name:"Otabek",
+            age: 32
+        }
