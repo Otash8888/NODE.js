@@ -92,7 +92,7 @@ Lesson 15. Working with JSON
         }
         JSON.stringify(obj)
         //converts it into string
-        // =>
+        // => single quotes '' outside, double qoutes "" inside
         '{"name":"Otabek","age":32}'
 
         let string = '{"name":"Otabek","age":32}'
@@ -103,4 +103,35 @@ Lesson 15. Working with JSON
         {
             name:"Otabek",
             age: 32
+        }
+
+Lesson 16. Adding and Saving notes
+
+        //inside notes.js
+        let fs = require('fs')
+        let addNote = (title,body) => {
+            let notes = []
+            let note = {
+                title,
+                body
+            }
+            /* same as below
+            let note = {
+                title:title,
+                body:body
+            }*/
+
+            try {
+                let allNotesString = fs.readFileSync('notes-data.json')
+                notes = JSON.parse(allNotes)
+            } catch (e) {
+
+            }
+            //we are using try and catch, because at the begging of the program it will throw an error for not finding a file notes-data.json
+            let dublicateNotes = notes.filter((note)=> note.title === title)
+            if (dublicateNotes.length === 0) {
+                notes.push(note)
+                fs.writeFileSync('notes-data.json', JSON.stringify(notes))
+            }
+
         }

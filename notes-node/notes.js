@@ -1,10 +1,38 @@
 console.log('Starting node.js')
 
-module.exports.addNote = () => {
-  console.log('addNote');
-  return 'New Note'
-}
 
+
+let fs = require('fs')
+    let addNote = (title,body) => {
+        let notes = []
+        let note = {
+            title,
+            body
+        }
+        /* same as below
+        let note = {
+            title:title,
+            body:body
+        }*/
+
+        try {
+            let allNotesString = fs.readFileSync('notes-data.json')
+            notes = JSON.parse(allNotes)
+        } catch (e) {
+
+        }
+        //we are using try and catch, because at the begging of the program it will throw an error for not finding a file notes-data.json
+        let dublicateNotes = notes.filter((note)=> note.title === title)
+        if (dublicateNotes.length === 0) {
+            notes.push(note)
+            fs.writeFileSync('notes-data.json', JSON.stringify(notes))
+        }
+
+    }
+
+    module.exports = {
+      addNote
+    }
 
 /*
 console.log(module);
