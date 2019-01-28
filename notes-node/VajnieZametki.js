@@ -105,12 +105,28 @@ Lesson 15. Working with JSON
             age: 32
         }
 
-Lesson 16. Adding and Saving notes
+Lesson 16-17. Adding and Saving notes and Refuctering
 
         //inside notes.js
         let fs = require('fs')
+
+        let fetchNotes = () => {
+            try {
+                let allNotesString = fs.readFileSync('notes-data.json')
+                notes = JSON.parse(allNotes)
+                return notes
+            } catch (e) {
+                return []
+            }
+            //we are using try and catch, because at the begging of the program it will throw an error for not finding a file notes-data.json
+        }
+
+        let saveNotes = (notes) => {
+            fs.writeFileSync('notes-data.json', JSON.stringify(notes))
+        }
+
         let addNote = (title,body) => {
-            let notes = []
+            let notes = fetchNotes()
             let note = {
                 title,
                 body
@@ -121,17 +137,13 @@ Lesson 16. Adding and Saving notes
                 body:body
             }*/
 
-            try {
-                let allNotesString = fs.readFileSync('notes-data.json')
-                notes = JSON.parse(allNotes)
-            } catch (e) {
-
-            }
-            //we are using try and catch, because at the begging of the program it will throw an error for not finding a file notes-data.json
             let dublicateNotes = notes.filter((note)=> note.title === title)
             if (dublicateNotes.length === 0) {
                 notes.push(note)
-                fs.writeFileSync('notes-data.json', JSON.stringify(notes))
+                saveNotes(notes)
+                return note
             }
 
         }
+
+Lesson 17. Refactoring
