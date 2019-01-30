@@ -105,7 +105,7 @@ Lesson 15. Working with JSON
             age: 32
         }
 
-Lesson 16-17. Adding and Saving notes and Refuctering
+Lesson 16-17-18-19. Adding, Saving, Removing and Reading notes and Refuctering
 
         //inside notes.js
         let fs = require('fs')
@@ -145,5 +145,41 @@ Lesson 16-17. Adding and Saving notes and Refuctering
             }
 
         }
+        // removing is in notes.js line 42-47
+        // skipped the getting a note
 
-Lesson 17. Refactoring
+Lesson 20. Debugging Node.js Application
+
+        //in the terminal using NODE INSPECTOR
+        node debug app.js
+        // enters debugging module
+        n
+        // type n (next) and hit Enter key, to execute  next statement
+        c
+        // type c (continue) and hit Enter key, to go to end of the code  statement
+        repl
+        //type repl  and hit Enter key, to play around, until line break debug executed
+        // in the atom inside the .js file
+        control + c
+        // to exit debug repl
+
+        debugger
+        //line breaks  before debugger
+
+Lesson 21-22. Nothing new to note here
+Lesson 23. Requiring Yargs arguments and advanced yargs
+
+        // inside app.js
+        const yargs = require('yargs')
+        const argv = yargs.command('add','Add a new note',{
+            title:{
+                describe:'Title of note',
+                demand:true,
+                alias:'t'
+            },
+            body:{
+                describe:'Body of note',
+                demand:true,
+                alias:'b'
+            }
+        })

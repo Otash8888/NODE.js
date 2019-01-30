@@ -10,12 +10,12 @@ let fetchNotes = () => {
     } catch (e) {
         return []
     }
-    //we are using try and catch, because at the begging of the program it will throw an error for not finding a file notes-data.json
 }
 
 let saveNotes = (notes) => {
     fs.writeFileSync('notes-data.json', JSON.stringify(notes))
 }
+
 
 
 let addNote = (title,body) => {
@@ -38,9 +38,18 @@ let addNote = (title,body) => {
     }
 
 }
-    module.exports = {
-      addNote
-    }
+
+let removeNote = (title) => {
+    let allNotes = fetchNotes()
+    let filteredNotes = allNotes.filter((note) => note.title !== title)
+    saveNotes(filteredNotes)
+    return allNotes.length === filteredNotes.length
+}
+
+module.exports = {
+    addNote
+}
+
 
 /*
 console.log(module);
