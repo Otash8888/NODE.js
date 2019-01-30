@@ -183,3 +183,34 @@ Lesson 23. Requiring Yargs arguments and advanced yargs
                 alias:'b'
             }
         })
+-----------------------------------------------------------------------------------------
+
+Lesson 24. Arrow functions
+
+        const square = x => x * x
+        // same as old version
+        function square (x){
+            return x * x
+        }
+
+
+        var user = {
+            name:'Otabek',
+            sayHi:() => {
+                console.log(arguments)
+                console.log(`Hi, I'm ${this.name}`)
+            },
+            sayHiAlt() {
+                console.log(arguments)
+                console.log(`Hi, I'm ${this.name}`)
+            }
+        }
+
+        user.sayHi(1,2,3)
+        //on console
+        //error
+        //Hi, I'm undefined
+        user.sayHiAlt(1,2,3)
+        //on console
+        //{'0':1,'1':2,'2':3}
+        //Hi, I'm Otabek
